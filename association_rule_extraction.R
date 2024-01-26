@@ -79,3 +79,22 @@ inspect(wm1)
 wm2 <- apriori(data=groceries, parameter=list(supp=0.01, conf=0.55), appearance=list(rhs="Whole.milk=Y"), control=list(verbose=F))
 wm2 <- sort(wm2, by = c("confidence", "support"))
 inspect(wm2)
+
+#------------------------------------------------#
+# VISUALIZAÇÕES GRÁFICAS DE REGRAS DE ASSOCIAÇÃO #
+#------------------------------------------------#
+
+install.packages("arulesViz")
+library(arulesViz)
+
+# Exibindo regras 'wm1' como um gráfico
+plot(wm1, method="graph", shading="confidence")
+
+# Visualizando regras 'wm2' como um clipe interativo
+plot(wm2, method="graph", shading="confidence", engine='interactive')
+
+# Exibindo regras 'wm2' como um ábaco
+plot(wm2, method="grouped", shading="confidence", engine='interactive')
+
+# Visualizando regras 'wm2' como uma matriz
+plot(rules3, method="matrix", shading="confidence", engine='interactive')
